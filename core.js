@@ -1,6 +1,6 @@
 var x = canvas2.width/2;
 var y = canvas2.height-30;
-var dx = 2;
+var dx = 1.2;
 var dy = -2;
 console.log(x);
 console.log(y);
@@ -10,14 +10,15 @@ var paddleWidth = 135;
 var paddleX = (canvas2.width-paddleWidth)/2;
 
 var brickRowCount = 4;
-var brickColumnCount = 5;
-var brickWidth = 80;
+var brickColumnCount = 8;
+var brickWidth = 50;
 var brickHeight = 20;
 var brickPadding = 10;
 var brickOffsetTop = 40;
 var brickOffsetLeft = 30;
 
-var outerRowCount = 1;
+var outerRowCount = 2;
+var bulletRowCount = 1;
 
 var bulletX = (paddleX + paddleWidth/2)
 
@@ -37,6 +38,15 @@ for(var c=0; c<brickColumnCount; c++) {
     }
 }
 
+var newBricks = [];
+for(var c=0; c<brickColumnCount; c++) {
+    newBricks[c] = [];
+    for(var r=0; r<bulletRowCount; r++) {
+        newBricks[c][r] = { x: 0, y: brickRowCount, status: 1 };
+    }
+}
+
+
 var score = 0
 
 function draw (){
@@ -45,6 +55,8 @@ canvas2.style.background = "black";
   drawBricks()
 
   drawOuterBricks()
+
+  // redrawBricks()
   
 
   drawBall()
