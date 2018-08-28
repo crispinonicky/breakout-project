@@ -1,26 +1,28 @@
 var x = canvas2.width/2;
 var y = canvas2.height-30;
+var yb = canvas2.height;
 var dx = 1.2;
 var dy = -2;
-console.log(x);
-console.log(y);
+
+// console.log(x);
+// console.log(y);
 
 var paddleHeight = 15;
 var paddleWidth = 135;
 var paddleX = (canvas2.width-paddleWidth)/2;
 
-var brickRowCount = 4;
+var bulletX = paddleX + paddleWidth / 2
+
+var brickRowCount = 5;
 var brickColumnCount = 8;
 var brickWidth = 50;
 var brickHeight = 20;
-var brickPadding = 10;
+var brickPadding = 8;
 var brickOffsetTop = 40;
 var brickOffsetLeft = 30;
 
-var outerRowCount = 2;
+var outerRowCount = 1;
 var bulletRowCount = 1;
-
-var bulletX = (paddleX + paddleWidth/2)
 
 var bricks = [];
 for(var c=0; c<brickColumnCount; c++) {
@@ -38,35 +40,40 @@ for(var c=0; c<brickColumnCount; c++) {
     }
 }
 
-var newBricks = [];
-for(var c=0; c<brickColumnCount; c++) {
-    newBricks[c] = [];
-    for(var r=0; r<bulletRowCount; r++) {
-        newBricks[c][r] = { x: 0, y: brickRowCount, status: 1 };
-    }
-}
+// var newBricks = [];
+// for(var c=0; c<brickColumnCount; c++) {
+//     newBricks[c] = [];
+//     for(var r=0; r<bulletRowCount; r++) {
+//         newBricks[c][r] = { x: 0, y: brickRowCount, status: 1 };
+//     }
+// }
 
 
 var score = 0
 
 function draw (){
+
   canvas.clearRect(0, 0, canvas2.width, canvas2.height)
 canvas2.style.background = "black";
+
   drawBricks()
 
   drawOuterBricks()
 
   // redrawBricks()
-  
+
 
   drawBall()
 
-  // drawBullet()
+  drawBullet()
 
   drawPaddle()
 
-  outerCollisionDetection()
+ 
   collisionDetection()
+
+  outerCollisionDetection()
+
 
   drawScore()
   if(x + dx > canvas2.width-ballRadius || x + dx < ballRadius){
@@ -90,15 +97,28 @@ canvas2.style.background = "black";
 
   if(rightPressed && paddleX < canvas2.width-paddleWidth) {
     paddleX += 7;
-    bulletX += 7;
+    if (spacePressed === false){
+      bulletX += 7;
+    }
 
   }else if(leftPressed && paddleX > 0) {
       paddleX -= 7;
-      bulletX -= 7;
-
+      if(spacePressed === false){
+        bulletX -= 7;
+      }
   }
+  if (spacePressed === true){
+    yb -= 8;
+  }
+  if (yb <= 0){
+    spacePressed = false;
+    yb = canvas2.height - 1
+    bulletX = paddleX + paddleWidth / 2
+  }
+
   x += dx
   y += dy
+
 }
 
 setInterval(draw, 6)
