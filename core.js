@@ -51,10 +51,12 @@ for(var c=0; c<brickColumnCount; c++) {
 
 var score = 0
 
+var lives = 3;
+
 function draw (){
 
   canvas.clearRect(0, 0, canvas2.width, canvas2.height)
-canvas2.style.background = "black";
+  canvas2.style.background = "black";
 
   drawBricks()
 
@@ -76,9 +78,15 @@ canvas2.style.background = "black";
 
 
   drawScore()
+
+  // drawLives()
+
+
   if(x + dx > canvas2.width-ballRadius || x + dx < ballRadius){
     dx = -dx;
   }
+
+
 
   if(y + dy <= paddleHeight){
     dy = -dy;
@@ -107,11 +115,12 @@ canvas2.style.background = "black";
         bulletX -= 7;
       }
   }
-  if (spacePressed === true){
+  if (spacePressed === true || mouseClicked === true){
     yb -= 8;
   }
   if (yb <= 0){
     spacePressed = false;
+    mouseClicked = false;
     yb = canvas2.height - 1
     bulletX = paddleX + paddleWidth / 2
   }

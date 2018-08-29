@@ -152,28 +152,35 @@ function drawPaddle() {
 var rightPressed = false;
 var leftPressed = false;
 var spacePressed = false;
+var mouseClicked = false;
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
+document.addEventListener("click", mouseHandler, false);
 
+function mouseHandler(e){
+    if (e.which === 1){
+        mouseClicked = true;
+    }
+}
 
 function keyDownHandler(e) {
-    if(e.keyCode === 39) {
+    if(e.keyCode === 39 || e.keyCode === 68) {
         rightPressed = true;
     }
-    else if(e.keyCode == 37) {
+    else if(e.keyCode == 37 || e.keyCode === 65) {
         leftPressed = true;
-    }else if(e.keyCode === 32){
+    }else if(e.keyCode === 32 || e.keyCode === 87 || e.keyCode === 83 || e.keyCode === 38 || e.keyCode === 40){
         spacePressed = true;
     }
 }
 
 function keyUpHandler(e) {
-    if(e.keyCode === 39) {
+    if(e.keyCode === 39 || e.keyCode === 68) {
         rightPressed = false ;
 
     }
-    else if(e.keyCode == 37) {
+    else if(e.keyCode == 37 || e.keyCode === 65) {
         leftPressed = false;
       
     }
@@ -184,4 +191,11 @@ function drawScore() {
     canvas.font = "16px Arial";
     canvas.fillStyle = "#0095DD";
     canvas.fillText("Score: "+score, 8, 20);
+}
+
+
+function drawLives() {
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "#0095DD";
+    ctx.fillText("Lives: "+lives, 400, 20);
 }
