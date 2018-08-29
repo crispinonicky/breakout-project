@@ -79,7 +79,7 @@ function draw (){
 
   drawScore()
 
-  // drawLives()
+  drawLives()
 
 
   if(x + dx > canvas2.width-ballRadius || x + dx < ballRadius){
@@ -97,8 +97,18 @@ function draw (){
       dy = -dy * 1.1
       dx = dx * 1.2
     }else{
+      lives--
+      if (!lives){
       //alert("GAME OVER");
       document.location.reload();
+      } else {
+        x = canvas2.width/2;
+        y = canvas2.height-30;
+        dx = 1.2;
+        dy = -2;
+        paddleX = (canvas2.width-paddleWidth)/2;
+        bulletX = paddleX + paddleWidth / 2
+      }
     }
   }
 

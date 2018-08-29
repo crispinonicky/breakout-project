@@ -195,7 +195,7 @@ function drawScore() {
 
 
 function drawLives() {
-    ctx.font = "16px Arial";
-    ctx.fillStyle = "#0095DD";
-    ctx.fillText("Lives: "+lives, 400, 20);
+    canvas.font = "16px Arial";
+    canvas.fillStyle = "#0095DD";
+    canvas.fillText("Lives: "+lives, canvas2.width - 65, 20);
 }

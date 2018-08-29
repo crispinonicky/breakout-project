@@ -1,21 +1,49 @@
+body{
+  background-color: black
+}
+
 canvas{
-  background: black
+  background: black;
+  /* margin-top: 50px */
 }
 
-.welcomePage{
-  width: 100%;
+#myCanvas{
+  /* margin-top: 50px */
+  /* border: 1px solid red; */
+  border-left: 1px red dotted;
+  border-right: 1px red dotted;
+
+}
+
+/* .welcomePage{
+  width: 100vw;
   height: 700px
-}
+} */
 
 .welcomePage{
+  /* width: 100vw;
+  height: 700px; */
   background-image: url("../images/atari-background-6.jpg");
   background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
+  background-repeat: no-repeat;
+  /* background-size: cover; */
+  background-size:contain;
 
 }
 
 .info{
+  padding-top: 7vh;
+  padding-left: 0.5vw;
   /* background-color: red; */
-  /* display:inline-block; */
+  /* width: 35%;  */
+
+}
+
+.minimap .highlight-selected {
+  background: blue;
+}
+
+/* The rule for selected highlights */
+.minimap .highlight-selected.selected {
+  background: red;
 }
