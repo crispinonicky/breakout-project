@@ -157,10 +157,19 @@ var mouseClicked = false;
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 document.addEventListener("click", mouseHandler, false);
+document.addEventListener("mousemove", mouseMoveHandler, false);
 
 function mouseHandler(e){
     if (e.which === 1){
         mouseClicked = true;
+    }
+}
+
+function mouseMoveHandler(e) {
+    var relativeX = e.clientX - canvas2.offsetLeft;
+    if(relativeX > 0 && relativeX < canvas2.width) {
+        paddleX = relativeX - paddleWidth/2;
+        bulletX = paddleX + paddleWidth / 2
     }
 }
 
