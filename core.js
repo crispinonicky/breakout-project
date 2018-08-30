@@ -81,12 +81,15 @@ function draw (){
 
   drawLives()
 
+  drawSpeed()
 
   if(x + dx > canvas2.width-ballRadius || x + dx < ballRadius){
     dx = -dx;
   }
 
+var speed = Math.abs(dx) + Math.abs(dy)
 
+console.log(speed)
 
   if(y + dy <= paddleHeight){
     dy = -dy;
@@ -99,7 +102,7 @@ function draw (){
     }else{
       lives--
       if (!lives){
-      //alert("GAME OVER");
+      alert("GAME OVER! YOU SCORED " + score + " POINTS!");
       document.location.reload();
       } else {
         x = canvas2.width/2;
